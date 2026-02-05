@@ -1,0 +1,118 @@
+/* =========================================================
+   🧱 Root layout da aplicação
+   - Garante altura mínima da viewport
+   - Evita bugs com flex layouts e scroll
+   ========================================================= */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   🧭 Scroll suave
+   - Aplicado apenas quando o usuário não prefere animações reduzidas
+   - Melhora UX sem prejudicar acessibilidade
+   ========================================================= */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* =========================================================
+   🧹 Reset mínimo (compatível com Tailwind)
+   - Evita sobrescrever o preflight do Tailwind
+   ========================================================= */
+body {
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================================
+   🎞️ Animação de entrada (fade + translate)
+   - Usa transform + opacity (GPU-friendly)
+   - Valores calibrados para naturalidade
+   ========================================================= */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Classe utilitária */
+.animate-fade-in {
+  animation: fade-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* =========================================================
+   ⚡ Transições base (sem matar performance)
+   - Nada de "*"
+   - Apenas propriedades realmente animáveis
+   ========================================================= */
+button,
+a,
+input,
+textarea,
+select,
+.transition-base {
+  transition:
+    background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================================
+   🚀 Hint de performance (uso consciente)
+   - Aplicar só em elementos animados com frequência
+   ========================================================= */
+.will-animate {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  /* força layer GPU quando necessário */
+}
+
+/* =========================================================
+   🧩 Micro utilidades (opcional, mas elegante)
+   ========================================================= */
+
+/* Evita highlight azul feio no mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Melhora legibilidade de textos longos */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Scrollbar discreta (opcional, visual premium) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  /* slate-500 */
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.5);
+  /* blue-500 */
+}
