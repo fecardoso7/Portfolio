@@ -20,10 +20,13 @@ git clone git@github.com:fecardoso7/Portfolio.git
 cd portfolio
 
 # 2. Instalar dependências
-npm install
+yarn install
+
+#3. Build
+yarn run build
 
 # 3. Iniciar o projeto
-npm start
+yarn start
 ```
 
 **Pronto!** O site abrirá automaticamente em http://localhost:3000
@@ -189,10 +192,13 @@ git clone https://github.com/fecardoso7/portfolio.git
 cd portfolio
 
 # 2. Install dependencies
-npm install
+yarn install
+
+#3. Run Build
+yarn run build
 
 # 3. Start the project
-npm start
+yarn start
 ```
 
 The site will automatically open at **http://localhost:3000**
