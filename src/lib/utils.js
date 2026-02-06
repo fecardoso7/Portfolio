@@ -1,6 +1,12 @@
+// utils.js
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-// Utility function to combine class names with Tailwind CSS merging
+
+/**
+ * Utilitário para mesclar classes CSS de forma inteligente.
+ * Combina 'clsx' para condicionais e 'tailwind-merge' para evitar
+ * conflitos de especificidade no Tailwind CSS.
+ */
 export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }

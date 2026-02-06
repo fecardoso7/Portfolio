@@ -1,4 +1,4 @@
-// Header.jsx — Premium Edition
+// Header.jsx
 import React, { useState, useEffect, useCallback, memo } from "react";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "./ui/button";
@@ -15,6 +15,7 @@ const Header = () => {
   const { isDark, toggleTheme } = useTheme();
   const { language, toggleLanguage, t } = useLanguage();
 
+  // Monitora o scroll para aplicar estilo no header e identificar a seção ativa
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
@@ -36,6 +37,7 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Scroll suave para as seções e fecha o menu mobile
   const scrollTo = useCallback((id) => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -65,7 +67,7 @@ const Header = () => {
         ${scrolled ? "h-[60px]" : "h-[76px]"}
         `}
       >
-        {/* NOME */}
+        {/* Logo / Nome - Volta ao topo */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="text-xl font-bold tracking-tight text-slate-900 dark:text-white hover:scale-[1.03] transition-transform"
@@ -73,7 +75,7 @@ const Header = () => {
           Felipe <span className="text-blue-500">Cardoso</span>
         </button>
 
-        {/* NAV DESKTOP */}
+        {/* Navegação Desktop */}
         <nav className="hidden md:flex items-center gap-8 relative">
           {navItems.map((item, i) => {
             const active = activeSection === item.id;
@@ -99,6 +101,7 @@ const Header = () => {
                   {item.label}
                 </span>
 
+                {/* Indicador de seção ativa (Linha de gradiente) */}
                 <span
                   className={`absolute left-0 -bottom-0.5 h-[2px] bg-blue-500 transition-all duration-300 shadow-[0_0_8px_rgba(59,130,246,0.5)]
                   ${active ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-60"}
@@ -109,7 +112,7 @@ const Header = () => {
           })}
         </nav>
 
-        {/* CONTROLES (CORRIGIDO: Removido o 'hidden sm:flex' para estar sempre visível) */}
+        {/* Controles de Idioma e Tema */}
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1 pr-2 mr-1 md:mr-2 border-r border-slate-200 dark:border-white/10">
             <Button
@@ -133,7 +136,7 @@ const Header = () => {
             </Button>
           </div>
 
-          {/* Mobile menu trigger */}
+          {/* Gatilho Menu Mobile */}
           <button
             onClick={() => setMenuOpen((v) => !v)}
             className="md:hidden p-2 text-slate-900 dark:text-white transition-transform active:scale-90"
@@ -143,7 +146,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* Menu Mobile Overlay */}
       <div
         className={`md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-[#050505]/95 backdrop-blur-xl border-b border-slate-200/60 dark:border-white/10 transition-all duration-300
         ${menuOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-3 invisible"}
@@ -163,11 +166,7 @@ const Header = () => {
                 </span>
                 <span
                   className={`text-sm uppercase tracking-[0.55em] font-semibold transition-colors
-                  ${
-                    active
-                      ? "text-slate-900 dark:text-white"
-                      : "text-slate-500 dark:text-white/60"
-                  }
+                  ${active ? "text-slate-900 dark:text-white" : "text-slate-500 dark:text-white/60"}
                   `}
                 >
                   {item.label}
@@ -178,7 +177,7 @@ const Header = () => {
         </nav>
       </div>
 
-      {/* LINHA FINAL (Premium Low Opacity) */}
+      {/* Linha final de gradiente (baixa opacidade) */}
       <div
         className={`w-full h-px bg-gradient-to-r from-transparent via-blue-500/10 to-transparent transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0"}`}
       />

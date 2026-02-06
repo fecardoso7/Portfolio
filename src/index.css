@@ -1,50 +1,35 @@
-/* =========================================================
-   ⚙️ Tailwind Core Layers
-   ========================================================= */
+/* index.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* =========================================================
-   🚫 Correção FOUC (Flash Branco) - Prioridade Alta
-   ========================================================= */
+/* Prioridade: Prevenção de FOUC e definição de esquema nativo */
 html {
-  /* Define a cor física imediata (#050505) para evitar a piscada branca no refresh */
   background-color: #050505;
-  /* Informa ao browser que o esquema nativo é dark (corrige scrollbars nativas) */
   color-scheme: dark;
-  /* Garante rolagem suave em âncoras */
   scroll-behavior: smooth;
 }
 
-/* =========================================================
-   🧹 Reset básico + tipografia base
-   ========================================================= */
+/* Reset base e tipografia */
 body {
   margin: 0;
-  /* Garante que o fundo seja aplicado em toda a altura da viewport */
   min-height: 100vh;
   background-color: #050505;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Previne rolagem horizontal indesejada causada por glows/blur */
   overflow-x: hidden;
 }
 
 code {
-  font-family:
-    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, monospace;
 }
 
-/* =========================================================
-   🎨 Design System — Variáveis Adaptadas ao seu Portfólio
-   ========================================================= */
+/* Design System: Tokens de cor para consistência global */
 @layer base {
   :root {
-    --background: 222 47% 4%; /* Dark background baseado na sua imagem */
+    --background: 222 47% 4%;
     --foreground: 210 40% 98%;
     --card: 222 47% 4%;
     --card-foreground: 210 40% 98%;
@@ -62,15 +47,12 @@ code {
     --ring: 224 76% 48%;
     --radius: 0.5rem;
 
-    /* Cores do seu branding azul */
     --brand-blue: 221 83% 53%;
     --brand-blue-glow: 221 83% 53% / 0.3;
   }
 }
 
-/* =========================================================
-   🌍 Estilos globais + ✨ Custom Premium Scrollbar (Blue)
-   ========================================================= */
+/* Scrollbar customizada: Estética Premium com baixa opacidade */
 @layer base {
   * {
     @apply border-border;
@@ -78,65 +60,48 @@ code {
 
   body {
     @apply bg-background text-foreground;
-    /* Suporte Firefox */
     scrollbar-width: thin;
     scrollbar-color: hsl(var(--brand-blue) / 0.4) transparent;
   }
 
-  /* Largura e Estilo da Barra (Chrome, Edge, Safari) */
   ::-webkit-scrollbar {
-    width: 6px; /* Mais fina para um look mais profissional/minimalista */
+    width: 6px;
   }
 
-  /* Track: Fundo Dinâmico com Baixa Opacidade */
   ::-webkit-scrollbar-track {
-    background: transparent; /* Transparente para fundir com o bg #050505 */
+    background: transparent;
   }
 
-  /* Thumb: O indicador com Gradiente e Glow */
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(
-      to bottom,
-      transparent,
-      hsl(var(--brand-blue) / 0.6),
-      /* Opacidade ajustada para destaque sutil */ transparent
-    );
+    background: linear-gradient(to bottom,
+        transparent,
+        hsl(var(--brand-blue) / 0.6),
+        transparent);
     border-radius: 20px;
-    /* Glow intensificado para o aspecto Premium "Neon" */
     box-shadow: 0 0 12px hsl(var(--brand-blue) / 0.3);
     transition: all 0.5s ease;
   }
 
-  /* Efeito de Hover: Intensifica o Glow e a Opacidade */
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(
-      to bottom,
-      hsl(var(--brand-blue) / 0.2),
-      hsl(var(--brand-blue)),
-      hsl(var(--brand-blue) / 0.2)
-    );
+    background: linear-gradient(to bottom,
+        hsl(var(--brand-blue) / 0.2),
+        hsl(var(--brand-blue)),
+        hsl(var(--brand-blue) / 0.2));
     box-shadow: 0 0 18px hsl(var(--brand-blue) / 0.7);
   }
 }
 
-/* =========================================================
-   🧪 Debug Wrapper
-   ========================================================= */
+/* Utilitário de Debug */
 [data-debug-wrapper="true"] {
   display: contents !important;
 }
 
-/* =========================================================
-   🧩 Dropdown System (CVMenu) — Responsivo + Direcional
-   ========================================================= */
-
-/* Evita que dropdown seja cortado por containers */
+/* Sistema de Dropdown: Transições e isolamento de camada */
 .dropdown-root {
   position: relative;
   isolation: isolate;
 }
 
-/* Base do menu */
 .dropdown-menu {
   transform-origin: top;
   will-change: transform, opacity;
@@ -148,7 +113,6 @@ code {
     transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* Estado aberto */
 .dropdown-menu[data-state="open"] {
   pointer-events: auto;
   opacity: 1;

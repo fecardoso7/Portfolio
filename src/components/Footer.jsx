@@ -1,3 +1,4 @@
+// Footer.jsx
 import React, { memo } from "react";
 import { Github, Linkedin, ArrowUp } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
@@ -9,30 +10,28 @@ const Footer = () => {
 
   return (
     <footer className="relative w-full bg-white dark:bg-[#050505] pt-20 pb-12 overflow-hidden transform-gpu snap-end">
-      {/* glow leve */}
+      {/* Linha de topo com brilho sutil */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500/25 to-transparent pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 mb-20">
-          {/* LOGO */}
+          {/* Logo e slogan */}
           <div className="flex flex-col items-start space-y-6">
             <div className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
               <span className="text-blue-500">&lt;</span>
               FC
               <span className="text-blue-500"> /&gt;</span>
             </div>
-
             <p className="text-[10px] text-slate-400 dark:text-slate-500 max-w-[220px] font-bold uppercase tracking-[0.35em] leading-relaxed">
               {t.footer.built}
             </p>
           </div>
 
-          {/* SITEMAP */}
+          {/* Links de navegação interna */}
           <div className="flex flex-col space-y-6">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-blue-500/60">
               Sitemap
             </h4>
-
             <nav className="flex flex-col space-y-4">
               {["about", "skills", "projects", "contact"].map((item) => (
                 <button
@@ -51,19 +50,17 @@ const Footer = () => {
             </nav>
           </div>
 
-          {/* SOCIAL */}
+          {/* Redes sociais e botão de voltar ao topo */}
           <div className="flex flex-col space-y-6">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-blue-500/60">
               Connect
             </h4>
-
             <div className="flex flex-wrap gap-3">
               <SocialIcon href={mockData.profile.github} icon={Github} />
               <SocialIcon href={mockData.profile.linkedin} icon={Linkedin} />
-
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                className="p-4 border border-blue-500/15 rounded-2xl text-blue-500 hover:bg-blue-500 hover:text-white transition-all shadow-sm transform-gpu active:scale-90"
+                className="p-4 border border-blue-500/15 rounded-2xl text-blue-500 hover:bg-blue-500 hover:text-white transition-all shadow-sm active:scale-90"
               >
                 <ArrowUp className="h-4 w-4" />
               </button>
@@ -71,7 +68,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* FOOTER BASE */}
+        {/* Rodapé final: Copyright e Status do sistema */}
         <div className="pt-10 border-t border-slate-200/60 dark:border-white/[0.03] flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 dark:text-slate-600 text-center md:text-left">
             © {currentYear} {mockData.profile.name}
@@ -91,6 +88,7 @@ const Footer = () => {
   );
 };
 
+// Componente auxiliar para os ícones sociais
 const SocialIcon = memo(({ href, icon: Icon }) => (
   <a
     href={href}

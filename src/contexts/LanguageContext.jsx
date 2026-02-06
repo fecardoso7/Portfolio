@@ -1,9 +1,10 @@
+// LanguageContext.jsx
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { translations } from "../translations/translations";
-// Cria o contexto de idioma
+
 const LanguageContext = createContext();
 
-// Hook customizado para usar o contexto de idioma
+// Hook para acessar o contexto de tradução de qualquer lugar
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
   if (!context) {
@@ -11,23 +12,27 @@ export const useLanguage = () => {
   }
   return context;
 };
-// Provider que envolve a aplicação e fornece o estado de idioma
+
 export const LanguageProvider = ({ children }) => {
+  // Inicializa o estado buscando do localStorage ou assume 'pt' como padrão
   const [language, setLanguage] = useState(() => {
     const saved = localStorage.getItem("language");
     return saved || "pt";
   });
-  // Sempre que o idioma mudar, atualiza no localStorage
+
+  // Persiste a escolha do usuário sempre que o idioma for alterado
   useEffect(() => {
     localStorage.setItem("language", language);
   }, [language]);
-  // Alterna entre inglês e português
+
+  // Alterna o estado entre 'en' e 'pt'
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "en" ? "pt" : "en"));
   };
-  // Pega as traduções do idioma atual
+
+  // Mapeia o objeto de tradução baseado na chave atual
   const t = translations[language];
-  // Fornece idioma, função de toggle e traduções para todos os componentes filhos
+
   return (
     <LanguageContext.Provider value={{ language, toggleLanguage, t }}>
       {children}

@@ -1,3 +1,4 @@
+// App.js
 import React, { useEffect, Suspense, lazy } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -8,13 +9,13 @@ import Hero from "./components/Hero";
 import Footer from "./components/Footer";
 import "./App.css";
 
-// Importação Dinâmica (Lazy Loading)
+// Importação Dinâmica para otimização de performance (Lighthouse Score)
 const About = lazy(() => import("./components/About"));
 const Skills = lazy(() => import("./components/Skills"));
 const Projects = lazy(() => import("./components/Projects"));
 const Contact = lazy(() => import("./components/Contact"));
 
-// Componente de Skeleton para manter o padrão Premium enquanto carrega
+// Placeholder de carregamento que respeita o padrão visual do site
 const SectionSkeleton = () => (
   <div className="w-full min-h-screen flex flex-col items-center justify-center bg-white dark:bg-[#050505] animate-pulse px-6">
     <div className="h-px w-32 bg-blue-500/10 mb-6" />
@@ -23,6 +24,7 @@ const SectionSkeleton = () => (
   </div>
 );
 
+// Gerencia dinamicamente o título e o ícone da aba (favicon)
 const FaviconHandler = () => {
   useEffect(() => {
     document.title = "Felipe Cardoso | Full Stack";
@@ -52,14 +54,15 @@ function App() {
         <LanguageProvider>
           <FaviconHandler />
           <div className="min-h-screen bg-white dark:bg-[#050505] transition-colors duration-700 relative flex flex-col">
-            {/* Linha de Gradiente Premium h-px no Topo */}
+            {/* Linha de Gradiente Premium no Topo (h-px) */}
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent z-50" />
 
             <Header />
 
             <main className="flex-grow">
-              <Hero /> {/* Carrega Imediato */}
-              {/* Envolvemos os componentes pesados no Suspense */}
+              <Hero />
+
+              {/* Suspense gerencia o carregamento das seções lazy */}
               <Suspense fallback={<SectionSkeleton />}>
                 <About />
                 <Skills />
@@ -70,7 +73,7 @@ function App() {
 
             <Footer />
 
-            {/* Linha de Gradiente Final */}
+            {/* Linha de Gradiente Final (Baixa Opacidade) */}
             <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-white/5 to-transparent" />
 
             <Toaster />

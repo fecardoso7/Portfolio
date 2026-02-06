@@ -1,15 +1,14 @@
-// Objeto de traduções do site
+// translations.js
+
 export const translations = {
-  // Idioma: Inglês
+  // Configurações em Inglês
   en: {
-    // Textos do menu de navegação
     nav: {
       about: "About",
       skills: "Skills",
       projects: "Projects",
       contact: "Contact",
     },
-    // Seção principal (hero)
     hero: {
       greeting: "Hi, I'm",
       name: "Felipe Cardoso",
@@ -19,7 +18,6 @@ export const translations = {
       resume: "Download Resume",
       viewProjects: "View Projects",
     },
-    // Seção "Sobre mim"
     about: {
       title: "About Me",
       description:
@@ -28,23 +26,19 @@ export const translations = {
       highlight2: "15+ Projects Completed",
       highlight3: "Full Stack Skills",
     },
-    // Seção de habilidades
     skills: {
       title: "Skills & Technologies",
       frontend: "Frontend",
       backend: "Backend",
       tools: "Tools & Others",
     },
-    // Seção de projetos
     projects: {
       title: "Featured Projects",
       viewLive: "View Live",
       viewCode: "View Code",
     },
-    // Seção de contato
     contact: {
       title: "Get In Touch",
-      // description: 'Have a project in mind or want to collaborate? Feel free to reach out!',
       name: "Name",
       email: "Email",
       message: "Message",
@@ -53,13 +47,13 @@ export const translations = {
       success: "Message sent successfully!",
       error: "Failed to send message. Please try again.",
     },
-    // Rodapé
     footer: {
       rights: "All rights reserved.",
       built: "Built with React, JavaScript & FastAPI",
     },
   },
-  // Idioma: Português
+
+  // Configurações em Português
   pt: {
     nav: {
       about: "Sobre",
@@ -97,7 +91,6 @@ export const translations = {
     },
     contact: {
       title: "Entre em Contato",
-      // description: 'Tem um projeto em mente ou quer colaborar? Fique à vontade para entrar em contato!',
       name: "Nome",
       email: "E-mail",
       message: "Mensagem",

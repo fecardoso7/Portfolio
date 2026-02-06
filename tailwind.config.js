@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  /* 🌙 Dark mode baseado em classe (mais controle e performance) */
+  /* Habilita controle de dark mode via classe no elemento raiz */
   darkMode: ["class"],
 
-  /* 📁 Arquivos onde o Tailwind vai buscar classes */
+  /* Define escopo de varredura para purga de classes não utilizadas */
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
     "./public/index.html",
@@ -11,26 +11,17 @@ module.exports = {
 
   theme: {
     extend: {
-      /* =========================================================
-         🎛️ Border radius baseado em tokens CSS
-         - Mantém consistência visual no design system
-         ========================================================= */
+      /* Tokens de arredondamento sincronizados com variáveis CSS */
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
 
-      /* =========================================================
-         🎨 Design System — Cores semânticas
-         - Todas baseadas em CSS variables (index.css)
-         ========================================================= */
+      /* Mapeamento de cores semânticas utilizando variáveis HSL */
       colors: {
-        /* Base */
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-
-        /* Cards e popovers */
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
@@ -39,8 +30,6 @@ module.exports = {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
         },
-
-        /* Cores principais */
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -61,13 +50,11 @@ module.exports = {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
-
-        /* UI tokens */
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
 
-        /* 🔥 Paleta laranja (brand) */
+        /* Branding: Paleta específica do projeto */
         orange: {
           primary: "hsl(var(--orange-primary))",
           secondary: "hsl(var(--orange-secondary))",
@@ -75,7 +62,7 @@ module.exports = {
           dark: "hsl(var(--orange-dark))",
         },
 
-        /* 📊 Charts (se você realmente usar isso) */
+        /* Escala de cores para visualização de dados */
         chart: {
           1: "hsl(var(--chart-1))",
           2: "hsl(var(--chart-2))",
@@ -85,9 +72,7 @@ module.exports = {
         },
       },
 
-      /* =========================================================
-         🎞️ Keyframes (animações base do projeto)
-         ========================================================= */
+      /* Definição de keyframes para animações customizadas */
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -97,17 +82,14 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-
-        /* ✨ Glow leve (pra borders e cards) */
+        /* Efeito de pulsação para elementos com brilho */
         glow: {
           "0%, 100%": { opacity: "0.4" },
           "50%": { opacity: "0.8" },
         },
       },
 
-      /* =========================================================
-         🎬 Animações prontas pra usar no Tailwind
-         ========================================================= */
+      /* Classes de animação utilitárias */
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
@@ -116,6 +98,5 @@ module.exports = {
     },
   },
 
-  /* 🔌 Plugins */
   plugins: [require("tailwindcss-animate")],
 };

@@ -12,7 +12,7 @@ import { useLanguage } from "../contexts/LanguageContext";
 import { mockData } from "../data/mock";
 
 /* =========================================================
-   📌 CV MENU — isolado, simples e previsível
+   Componente do menu de currículo
    ========================================================= */
 
 const CVMenu = memo(({ labels, profile, onSelect, direction, menuRef }) => {
@@ -34,7 +34,7 @@ const CVMenu = memo(({ labels, profile, onSelect, direction, menuRef }) => {
       `}
     >
       <div className="flex flex-col gap-1">
-        {/* 🇧🇷 PT */}
+        {/* Opção de CV em português */}
         <button
           onClick={() => onSelect(profile.resumes?.pt)}
           className="group/item relative w-full px-5 py-5 rounded-xl flex items-center justify-between overflow-hidden transition-all duration-500"
@@ -51,7 +51,7 @@ const CVMenu = memo(({ labels, profile, onSelect, direction, menuRef }) => {
 
         <div className="h-px w-[90%] bg-slate-100 dark:bg-white/5 mx-auto" />
 
-        {/* 🇺🇸 EN */}
+        {/* Opção de CV em inglês */}
         <button
           onClick={() => onSelect(profile.resumes?.en)}
           className="group/item relative w-full px-5 py-5 rounded-xl flex items-center justify-between overflow-hidden transition-all duration-500"
@@ -71,50 +71,42 @@ const CVMenu = memo(({ labels, profile, onSelect, direction, menuRef }) => {
 });
 
 /* =========================================================
-   🚀 HERO — versão simplificada e otimizada
+   Seção principal da página
    ========================================================= */
 
 const Hero = () => {
+  // idioma e traduções
   const { t, language } = useLanguage();
 
-  /* ============================
-     🔧 Estados essenciais
-     ============================ */
-
+  // estado do menu de currículo
   const [open, setOpen] = useState(false);
   const [direction, setDirection] = useState("down");
 
+  // referências do botão e do menu
   const buttonRef = useRef(null);
   const menuRef = useRef(null);
 
+  // dados do perfil
   const profile = mockData.profile ?? {};
   const isPT = language === "pt";
 
-  /* ============================
-     🧠 Textos derivados (sem recalcular à toa)
-     ============================ */
-
+  // texto de status
   const statusText = isPT
     ? "Disponível para novos projetos"
     : "Available for new projects";
 
+  // labels do menu de currículo
   const cvLabels = {
     pt: isPT ? "Português" : "Portuguese",
     en: isPT ? "Inglês" : "English",
   };
 
-  /* ============================
-     🌍 Abrir links externos
-     ============================ */
-
+  // abre links externos
   const openLink = useCallback((url) => {
     if (url) window.open(url, "_blank", "noopener,noreferrer");
   }, []);
 
-  /* ============================
-     📄 Clique em CV
-     ============================ */
-
+  // seleciona CV e fecha o menu
   const handleSelectCV = useCallback(
     (url) => {
       openLink(url);
@@ -123,10 +115,7 @@ const Hero = () => {
     [openLink],
   );
 
-  /* ============================
-     📐 Calcula direção do menu
-     ============================ */
-
+  // define direção do menu
   const calcDirection = useCallback(() => {
     if (!buttonRef.current) return "down";
 
@@ -138,19 +127,13 @@ const Hero = () => {
     return spaceBelow < menuHeight && spaceAbove > spaceBelow ? "up" : "down";
   }, []);
 
-  /* ============================
-     🎯 Toggle do menu
-     ============================ */
-
+  // alterna o menu de currículo
   const toggleMenu = useCallback(() => {
     setDirection(calcDirection());
     setOpen((prev) => !prev);
   }, [calcDirection]);
 
-  /* ============================
-     🖱️ Fecha ao clicar fora
-     ============================ */
-
+  // fecha o menu ao clicar fora
   useEffect(() => {
     if (!open) return;
 
@@ -167,10 +150,7 @@ const Hero = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [open]);
 
-  /* ============================
-     ⌨️ Fecha com ESC
-     ============================ */
-
+  // fecha o menu ao pressionar ESC
   useEffect(() => {
     if (!open) return;
 
@@ -182,22 +162,17 @@ const Hero = () => {
     return () => document.removeEventListener("keydown", handleEsc);
   }, [open]);
 
-  /* ============================
-     📌 Scroll helper
-     ============================ */
-
+  // scroll suave para seções
   const scrollToId = useCallback((id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   }, []);
-
-  /* ========================================================= */
 
   return (
     <section
       id="hero"
       className="relative flex flex-col items-center justify-center min-h-screen w-full px-4 sm:px-6 snap-start transform-gpu bg-white dark:bg-[#050505] transition-colors duration-500 py-12 md:py-0"
     >
-      {/* BACKGROUND */}
+      {/* Background da seção */}
       <div className="absolute inset-0 pointer-events-none transform-gpu overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(59,130,246,0.06),transparent_80%)] dark:bg-[radial-gradient(circle_at_50%_40%,rgba(59,130,246,0.04),transparent_80%)]" />
         <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[280px] md:w-[800px] h-[400px] bg-blue-600/[0.05] blur-[100px] md:blur-[120px] rounded-full" />
@@ -206,7 +181,7 @@ const Hero = () => {
       </div>
 
       <div className="max-w-6xl mx-auto w-full z-10 flex flex-col gap-8 md:gap-14">
-        {/* STATUS */}
+        {/* Status */}
         <div className="flex items-center gap-3 w-fit px-4 py-2 rounded-full bg-slate-200/40 dark:bg-white/[0.02] border border-slate-300/50 dark:border-white/[0.05] backdrop-blur-md shadow-sm shrink-0">
           <span className="relative flex h-2 w-2 shrink-0">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
@@ -217,11 +192,11 @@ const Hero = () => {
           </span>
         </div>
 
-        {/* TEXTO PRINCIPAL */}
+        {/* Nome, título e descrição */}
         <div className="space-y-4 md:space-y-8 text-left">
-          <h1 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9] text-slate-900 dark:text-white whitespace-nowrap">
+          <h1 className="flex items-baseline text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9] text-slate-900 dark:text-white whitespace-nowrap">
             {t.hero.name}
-            <span className="inline-block w-[0.12em] h-[0.12em] rounded-full bg-blue-500 ml-1 mb-[0.1em] opacity-80 shadow-[0_0_20px_rgba(59,130,246,0.6)]" />
+            <span className="block w-[0.12em] h-[0.12em] rounded-full bg-blue-500 ml-2 shadow-[0_0_20px_rgba(59,130,246,0.6)] opacity-90" />
           </h1>
 
           <div className="space-y-3">
@@ -238,9 +213,9 @@ const Hero = () => {
 
         <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-300/50 dark:via-blue-500/10 to-transparent" />
 
-        {/* CTA */}
+        {/* Área de ações */}
         <div className="flex flex-col md:flex-row items-center md:justify-between gap-6 w-full">
-          {/* BOTÃO CV */}
+          {/* Botão de currículo */}
           <div ref={buttonRef} className="relative group w-full md:w-auto">
             <Button
               onClick={toggleMenu}
@@ -269,9 +244,10 @@ const Hero = () => {
             )}
           </div>
 
-          {/* LINKS */}
+          {/* Links externos */}
           <div className="flex items-center gap-6 md:gap-10 px-6 py-5 md:px-10 rounded-2xl bg-slate-100/50 dark:bg-white/[0.01] border border-slate-200 dark:border-white/[0.04] backdrop-blur-sm w-full md:w-auto justify-center">
             <div className="flex items-center gap-6">
+              {/* GitHub */}
               <button
                 onClick={() => openLink(profile.github)}
                 className="group flex items-center gap-0 md:hover:gap-3 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-500 transition-all duration-500 ease-in-out"
@@ -282,6 +258,7 @@ const Hero = () => {
                 </span>
               </button>
 
+              {/* LinkedIn */}
               <button
                 onClick={() => openLink(profile.linkedin)}
                 className="group flex items-center gap-0 md:hover:gap-3 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-500 transition-all duration-500 ease-in-out"
@@ -295,6 +272,7 @@ const Hero = () => {
 
             <div className="h-8 w-px bg-gradient-to-b from-transparent via-slate-300 dark:via-white/10 to-transparent" />
 
+            {/* Scroll para projetos */}
             <button
               onClick={() => scrollToId("projects")}
               className="group flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-500 transition-all text-[10px] font-bold uppercase tracking-[0.3em]"
@@ -311,19 +289,16 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* SCROLL */}
+      {/* Indicador de scroll */}
       <div
-        className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40 hover:opacity-100 transition-opacity cursor-pointer group z-20"
         onClick={() => scrollToId("about")}
+        className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity cursor-pointer z-20 group"
       >
         <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-slate-500 dark:text-slate-400 whitespace-nowrap">
           {isPT ? "Rolar" : "Scroll"}
         </span>
-        <div className="flex flex-col items-center">
-          <div className="w-[1px] h-8 bg-blue-500/20 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-full bg-blue-500/40 dark:bg-blue-500/60 animate-bounce" />
-          </div>
-        </div>
+
+        <div className="scroll-arrow" />
       </div>
 
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-white/[0.05] to-transparent" />
