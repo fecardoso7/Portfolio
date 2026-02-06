@@ -1,4 +1,4 @@
-// Header.jsx
+// Header.jsx - Apenas ajuste de transição e estética de scroll
 import React, { useState, useEffect, useCallback, memo } from "react";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "./ui/button";
@@ -15,7 +15,6 @@ const Header = () => {
   const { isDark, toggleTheme } = useTheme();
   const { language, toggleLanguage, t } = useLanguage();
 
-  // Monitora o scroll para aplicar estilo no header e identificar a seção ativa
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
@@ -37,7 +36,6 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Scroll suave para as seções e fecha o menu mobile
   const scrollTo = useCallback((id) => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -54,23 +52,23 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 transform-gpu
+      className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
       ${
         scrolled
-          ? "bg-white/70 dark:bg-[#050505]/70 backdrop-blur-xl border-b border-slate-200/60 dark:border-white/10 shadow-[0_0_30px_rgba(59,130,246,0.12)]"
-          : "bg-transparent"
+          ? "bg-white/70 dark:bg-[#050505]/70 backdrop-blur-xl border-b border-slate-200/60 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.1)]"
+          : "bg-transparent border-b border-transparent"
       }
       `}
     >
       <div
-        className={`max-w-6xl mx-auto px-6 flex items-center justify-between transition-all duration-300
-        ${scrolled ? "h-[60px]" : "h-[76px]"}
+        className={`max-w-6xl mx-auto px-6 flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
+        ${scrolled ? "h-[60px]" : "h-[80px]"}
         `}
       >
-        {/* Logo / Nome - Volta ao topo */}
+        {/* Logo / Nome */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="text-xl font-bold tracking-tight text-slate-900 dark:text-white hover:scale-[1.03] transition-transform"
+          className="text-xl font-bold tracking-tight text-slate-900 dark:text-white hover:opacity-80 transition-opacity"
         >
           Felipe <span className="text-blue-500">Cardoso</span>
         </button>
@@ -101,9 +99,8 @@ const Header = () => {
                   {item.label}
                 </span>
 
-                {/* Indicador de seção ativa (Linha de gradiente) */}
                 <span
-                  className={`absolute left-0 -bottom-0.5 h-[2px] bg-blue-500 transition-all duration-300 shadow-[0_0_8px_rgba(59,130,246,0.5)]
+                  className={`absolute left-0 -bottom-0.5 h-[2px] bg-blue-500 transition-all duration-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]
                   ${active ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-60"}
                   `}
                 />
@@ -112,9 +109,9 @@ const Header = () => {
           })}
         </nav>
 
-        {/* Controles de Idioma e Tema */}
+        {/* Controles */}
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 pr-2 mr-1 md:mr-2 border-r border-slate-200 dark:border-white/10">
+          <div className="flex items-center gap-1 pr-2 mr-1 border-r border-slate-200 dark:border-white/10">
             <Button
               variant="ghost"
               size="sm"
@@ -130,13 +127,12 @@ const Header = () => {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="h-8 w-8 text-slate-500 dark:text-white/50 hover:text-blue-500 hover:bg-transparent active:scale-90 transition-all"
+              className="h-8 w-8 text-slate-500 dark:text-white/50 hover:text-blue-500 hover:bg-transparent transition-all"
             >
               {isDark ? <Sun size={16} /> : <Moon size={16} />}
             </Button>
           </div>
 
-          {/* Gatilho Menu Mobile */}
           <button
             onClick={() => setMenuOpen((v) => !v)}
             className="md:hidden p-2 text-slate-900 dark:text-white transition-transform active:scale-90"
@@ -146,9 +142,16 @@ const Header = () => {
         </div>
       </div>
 
+      {/* Linha final de gradiente com Glow sutil (Regra Premium) */}
+      <div
+        className={`w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent transition-all duration-700
+        ${scrolled ? "opacity-100" : "opacity-0"}
+        `}
+      />
+
       {/* Menu Mobile Overlay */}
       <div
-        className={`md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-[#050505]/95 backdrop-blur-xl border-b border-slate-200/60 dark:border-white/10 transition-all duration-300
+        className={`md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-[#050505]/95 backdrop-blur-xl border-b border-slate-200/60 dark:border-white/10 transition-all duration-500
         ${menuOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-3 invisible"}
         `}
       >
@@ -159,7 +162,7 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className="flex flex-col items-center transition-transform active:scale-95"
+                className="flex flex-col items-center"
               >
                 <span className="text-[10px] font-mono text-blue-500 mb-2">
                   0{i + 1}
@@ -167,7 +170,7 @@ const Header = () => {
                 <span
                   className={`text-sm uppercase tracking-[0.55em] font-semibold transition-colors
                   ${active ? "text-slate-900 dark:text-white" : "text-slate-500 dark:text-white/60"}
-                  `}
+                `}
                 >
                   {item.label}
                 </span>
@@ -176,11 +179,6 @@ const Header = () => {
           })}
         </nav>
       </div>
-
-      {/* Linha final de gradiente (baixa opacidade) */}
-      <div
-        className={`w-full h-px bg-gradient-to-r from-transparent via-blue-500/10 to-transparent transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0"}`}
-      />
     </header>
   );
 };

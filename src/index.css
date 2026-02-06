@@ -4,29 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Prioridade: Prevenção de FOUC e definição de esquema nativo */
-html {
-  background-color: #050505;
-  color-scheme: dark;
-  scroll-behavior: smooth;
-}
-
-/* Reset base e tipografia */
-body {
-  margin: 0;
-  min-height: 100vh;
-  background-color: #050505;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, monospace;
-}
-
-/* Design System: Tokens de cor para consistência global */
 @layer base {
   :root {
     --background: 222 47% 4%;
@@ -50,59 +27,84 @@ code {
     --brand-blue: 221 83% 53%;
     --brand-blue-glow: 221 83% 53% / 0.3;
   }
-}
 
-/* Scrollbar customizada: Estética Premium com baixa opacidade */
-@layer base {
-  * {
-    @apply border-border;
+  html {
+    background-color: #050505;
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    /* Garante estabilidade sem quebrar o layout */
+    scrollbar-gutter: stable;
   }
 
   body {
-    @apply bg-background text-foreground;
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--brand-blue) / 0.4) transparent;
+    margin: 0;
+    min-height: 100vh;
+    @apply bg-background text-foreground antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+    /* Fundo dinâmico sutil */
+    background-image: radial-gradient(circle at 50% 0%, hsla(var(--brand-blue) / 0.05), transparent 50%);
   }
+}
 
+/* Scrollbar Customizada - Mantendo sua lógica original com melhorias de renderização */
+@layer base {
   ::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
   }
 
   ::-webkit-scrollbar-track {
     background: transparent;
+    margin-block: 4px;
   }
 
   ::-webkit-scrollbar-thumb {
+    /* Gradiente de subida */
     background: linear-gradient(to bottom,
         transparent,
-        hsl(var(--brand-blue) / 0.6),
+        hsl(var(--brand-blue) / 0.5),
         transparent);
     border-radius: 20px;
-    box-shadow: 0 0 12px hsl(var(--brand-blue) / 0.3);
-    transition: all 0.5s ease;
+
+    /* Brilho (Glow) de baixa opacidade */
+    box-shadow: 0 0 10px hsl(var(--brand-blue) / 0.2);
+
+    /* Suavização e correção de renderização */
+    border: 1px solid transparent;
+    background-clip: content-box;
   }
 
   ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(to bottom,
         hsl(var(--brand-blue) / 0.2),
-        hsl(var(--brand-blue)),
+        hsl(var(--brand-blue) / 0.9),
         hsl(var(--brand-blue) / 0.2));
-    box-shadow: 0 0 18px hsl(var(--brand-blue) / 0.7);
+    box-shadow: 0 0 15px hsl(var(--brand-blue) / 0.5);
   }
 }
 
-/* Utilitário de Debug */
-[data-debug-wrapper="true"] {
-  display: contents !important;
+/* Sistema de Títulos e Linhas (Padrão Premium solicitado) */
+@layer components {
+  .title-number-mono {
+    @apply text-[10px] tracking-[0.4em] uppercase opacity-50;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .title-main-premium {
+    @apply text-xs md:text-sm tracking-[0.8em] md:tracking-[1.2em] uppercase;
+  }
+
+  .line-gradient-premium {
+    @apply h-px w-full;
+    background: linear-gradient(90deg, transparent, hsla(var(--brand-blue) / 0.3), transparent);
+    box-shadow: 0 0 8px hsla(var(--brand-blue) / 0.1);
+  }
 }
 
-/* Sistema de Dropdown: Transições e isolamento de camada */
-.dropdown-root {
-  position: relative;
-  isolation: isolate;
-}
-
+/* Dropdown */
 .dropdown-menu {
+  @apply backdrop-blur-md bg-background/40 border border-white/5;
   transform-origin: top;
   will-change: transform, opacity;
   pointer-events: none;
