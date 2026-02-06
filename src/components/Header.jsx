@@ -1,4 +1,4 @@
-// Header.jsx - Apenas ajuste de transição e estética de scroll
+// Header.jsx - Componente de navegação principal com suporte a temas e scroll dinâmico
 import React, { useState, useEffect, useCallback, memo } from "react";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "./ui/button";
@@ -15,6 +15,7 @@ const Header = () => {
   const { isDark, toggleTheme } = useTheme();
   const { language, toggleLanguage, t } = useLanguage();
 
+  // Gerenciamento de scroll e monitoramento de seções ativas
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
@@ -36,6 +37,7 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Lógica de navegação suave entre seções
   const scrollTo = useCallback((id) => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -60,12 +62,13 @@ const Header = () => {
       }
       `}
     >
+      {/* Container principal de conteúdo */}
       <div
         className={`max-w-6xl mx-auto px-6 flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
         ${scrolled ? "h-[60px]" : "h-[80px]"}
         `}
       >
-        {/* Logo / Nome */}
+        {/* Identidade Visual / Logo */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="text-xl font-bold tracking-tight text-slate-900 dark:text-white hover:opacity-80 transition-opacity"
@@ -73,7 +76,7 @@ const Header = () => {
           Felipe <span className="text-blue-500">Cardoso</span>
         </button>
 
-        {/* Navegação Desktop */}
+        {/* Menu de navegação Desktop */}
         <nav className="hidden md:flex items-center gap-8 relative">
           {navItems.map((item, i) => {
             const active = activeSection === item.id;
@@ -83,10 +86,12 @@ const Header = () => {
                 onClick={() => scrollTo(item.id)}
                 className="relative group py-2"
               >
+                {/* Numeração Mono */}
                 <span className="absolute -top-2 text-[9px] font-mono text-blue-500 opacity-0 group-hover:opacity-100 transition-all duration-300">
                   0{i + 1}
                 </span>
 
+                {/* Título Principal */}
                 <span
                   className={`text-[11px] uppercase tracking-[0.35em] font-semibold transition-colors duration-300
                   ${
@@ -99,6 +104,7 @@ const Header = () => {
                   {item.label}
                 </span>
 
+                {/* Linha de indicador ativo com Glow sutil */}
                 <span
                   className={`absolute left-0 -bottom-0.5 h-[2px] bg-blue-500 transition-all duration-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]
                   ${active ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-60"}
@@ -109,9 +115,10 @@ const Header = () => {
           })}
         </nav>
 
-        {/* Controles */}
+        {/* Interface de Controles (Idioma, Tema e Mobile Toggle) */}
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1 pr-2 mr-1 border-r border-slate-200 dark:border-white/10">
+            {/* Seletor de Idioma */}
             <Button
               variant="ghost"
               size="sm"
@@ -123,6 +130,7 @@ const Header = () => {
               </span>
             </Button>
 
+            {/* Alternância de Tema Escuro/Claro */}
             <Button
               variant="ghost"
               size="icon"
@@ -133,6 +141,7 @@ const Header = () => {
             </Button>
           </div>
 
+          {/* Botão de Menu Mobile */}
           <button
             onClick={() => setMenuOpen((v) => !v)}
             className="md:hidden p-2 text-slate-900 dark:text-white transition-transform active:scale-90"
@@ -142,14 +151,14 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Linha final de gradiente com Glow sutil (Regra Premium) */}
+      {/* Linha final de gradiente com efeito Glow */}
       <div
         className={`w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent transition-all duration-700
         ${scrolled ? "opacity-100" : "opacity-0"}
         `}
       />
 
-      {/* Menu Mobile Overlay */}
+      {/* Sobreposição do Menu Mobile (Overlay) */}
       <div
         className={`md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-[#050505]/95 backdrop-blur-xl border-b border-slate-200/60 dark:border-white/10 transition-all duration-500
         ${menuOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-3 invisible"}
