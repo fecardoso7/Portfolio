@@ -7,6 +7,7 @@ const About = () => {
   const { t, language } = useLanguage();
   const isPT = language === "pt";
 
+  // Memorização dos dados para evitar re-cálculos desnecessários durante re-renders
   const stats = useMemo(
     () => [
       {
@@ -28,7 +29,7 @@ const About = () => {
     [isPT],
   );
 
-  // Configurações de animação para reutilização
+  // Configuração de animação padrão para entrada suave dos elementos (Fade-in Up)
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
@@ -43,14 +44,14 @@ const About = () => {
                  bg-white dark:bg-[#050505] transition-colors duration-700 snap-start 
                  pt-20 pb-12 overflow-y-auto lg:overflow-hidden transform-gpu"
     >
-      {/* Background Dinâmico com Glow e Linha de Topo */}
+      {/* Camada de UI Premium: Background com Glow central e linha de gradiente superior */}
       <div className="absolute inset-0 pointer-events-none transform-gpu">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.03),transparent_70%)] opacity-40" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.04),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.03),transparent_70%)] opacity-100" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-px bg-gradient-to-r from-transparent via-blue-500/20 dark:via-blue-400/20 to-transparent z-20" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-md h-[120px] bg-blue-500/5 dark:bg-blue-600/10 blur-[100px] rounded-full" />
       </div>
 
-      {/* Cabeçalho da Seção com Animação */}
+      {/* Título da Seção: Segue o padrão de tracking largo e numeração mono */}
       <motion.div
         {...fadeInUp}
         className="w-full flex flex-col items-center mb-10 lg:mb-16 px-6 z-10 shrink-0"
@@ -69,10 +70,9 @@ const About = () => {
         </div>
       </motion.div>
 
-      {/* Container Principal */}
       <div className="w-full max-w-6xl mx-auto px-6 relative z-10 flex items-center justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center w-full">
-          {/* Foto de Perfil com Slide Lateral */}
+          {/* Container da Imagem: Efeito de borda sutil e glow lateral no hover */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -91,7 +91,7 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Conteúdo Escrito e Cards */}
+          {/* Área de Texto e Estatísticas */}
           <div className="lg:col-span-7 space-y-6 lg:space-y-10 order-1 lg:order-2">
             <motion.p
               {...fadeInUp}
@@ -101,7 +101,7 @@ const About = () => {
               {t.about.description}
             </motion.p>
 
-            {/* Grid de Stats com Staggered Animation */}
+            {/* Grid de Cards: Implementação do padrão Premium com gradiente de subida e linha de brilho base */}
             <motion.div
               initial="initial"
               whileInView="animate"
@@ -117,19 +117,32 @@ const About = () => {
                   <motion.div
                     key={stat.label}
                     variants={{
-                      initial: { opacity: 0, scale: 0.95 },
-                      animate: { opacity: 1, scale: 1 },
+                      initial: { opacity: 0 },
+                      animate: { opacity: 1 },
                     }}
                     transition={{ duration: 0.5 }}
-                    className="group/stat relative p-4 md:p-5 rounded-2xl bg-white dark:bg-[#080808] border border-slate-200/50 dark:border-white/[0.05] transition-all duration-500 hover:bg-blue-600/10 hover:border-blue-500/20 hover:scale-[1.05] flex flex-col items-center lg:items-start cursor-default"
+                    className="group/stat relative p-4 md:p-5 rounded-2xl 
+                               bg-white/50 dark:bg-[#080808] 
+                               border border-slate-200/60 dark:border-white/[0.05] 
+                               transition-all duration-500 overflow-hidden
+                               flex flex-col items-center lg:items-start cursor-default
+                               hover:border-blue-500/30 hover:shadow-xl hover:shadow-blue-500/[0.05] dark:hover:shadow-none"
                   >
-                    <div className="text-blue-500/80 mb-2 md:mb-3 group-hover/stat:scale-110 transition-transform">
-                      <Icon size={18} />
+                    {/* Efeito Visual: Gradiente de Subida Interno (Ativado no Hover) */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-500/[0.04] to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity duration-500" />
+
+                    {/* Efeito Visual: Linha de Glow na base do card */}
+                    <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity duration-500" />
+
+                    <div className="relative z-10 text-slate-400 dark:text-slate-500 group-hover/stat:text-blue-500 transition-colors duration-500 mb-2 md:mb-3">
+                      <Icon size={18} strokeWidth={1.5} />
                     </div>
-                    <p className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] font-bold text-slate-400 dark:text-slate-500 mb-1">
+
+                    <p className="relative z-10 text-[9px] md:text-[10px] uppercase tracking-[0.4em] font-bold text-slate-400 dark:text-slate-500 mb-1 transition-colors group-hover/stat:text-slate-500 dark:group-hover/stat:text-slate-400">
                       {stat.label}
                     </p>
-                    <p className="text-[12px] md:text-[13px] font-bold text-slate-900 dark:text-slate-100 leading-tight text-center lg:text-left">
+
+                    <p className="relative z-10 text-[12px] md:text-[13px] font-bold text-slate-900 dark:text-slate-100 leading-tight text-center lg:text-left transition-colors duration-500 group-hover/stat:text-blue-600 dark:group-hover/stat:text-blue-400">
                       {stat.value}
                     </p>
                   </motion.div>
@@ -140,7 +153,7 @@ const About = () => {
         </div>
       </div>
 
-      {/* Linha Final de Separação (Gradiente Suave) */}
+      {/* Divisor Inferior: Linha de gradiente discreta para finalização da seção */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-px bg-gradient-to-r from-transparent via-blue-500/10 dark:via-blue-400/10 to-transparent" />
     </section>
   );
