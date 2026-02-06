@@ -47,44 +47,7 @@
   }
 }
 
-/* Scrollbar Customizada - Mantendo sua lógica original com melhorias de renderização */
-@layer base {
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-    margin-block: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    /* Gradiente de subida */
-    background: linear-gradient(to bottom,
-        transparent,
-        hsl(var(--brand-blue) / 0.5),
-        transparent);
-    border-radius: 20px;
-
-    /* Brilho (Glow) de baixa opacidade */
-    box-shadow: 0 0 10px hsl(var(--brand-blue) / 0.2);
-
-    /* Suavização e correção de renderização */
-    border: 1px solid transparent;
-    background-clip: content-box;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to bottom,
-        hsl(var(--brand-blue) / 0.2),
-        hsl(var(--brand-blue) / 0.9),
-        hsl(var(--brand-blue) / 0.2));
-    box-shadow: 0 0 15px hsl(var(--brand-blue) / 0.5);
-  }
-}
-
-/* Sistema de Títulos e Linhas (Padrão Premium solicitado) */
+/* Sistema de Títulos e Linhas */
 @layer components {
   .title-number-mono {
     @apply text-[10px] tracking-[0.4em] uppercase opacity-50;
