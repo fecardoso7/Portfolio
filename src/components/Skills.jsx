@@ -30,6 +30,7 @@ const ICON_REGISTRY = Object.freeze({
   css: Palette,
   react: Braces,
   reactjs: Braces,
+  nextjs: Braces,
   tailwindcss: Layout,
   tailwind: Layout,
   redux: Blocks,

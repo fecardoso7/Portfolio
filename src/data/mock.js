@@ -15,8 +15,21 @@ export const mockData = {
 
   // Listagem de Projetos (Destaques e Secundários)
   projects: [
-    {
+        {
       id: 1,
+      title: "APS Administrativo",
+      titleEn: "APS Administrative",
+      description:
+        "Website institucional desenvolvido para a APS Administrativo, com foco em performance, clareza de informação e experiência do usuário. A aplicação foi construída com React e JavaScript, utilizando componentes reutilizáveis e arquitetura modular, garantindo escalabilidade, manutenção simplificada e carregamento otimizado. O projeto traduz a identidade da empresa em uma interface moderna, responsiva e orientada a conversão.",
+      descriptionEn:
+        "Institutional website developed for APS Administrativo, focused on performance, clarity, and user experience. Built with React and JavaScript, using reusable components and a modular architecture to ensure scalability, maintainability, and optimized loading. The project translates the company’s identity into a modern, responsive interface designed to enhance usability and conversion.",
+      image: "/apsadm.webp",
+      technologies: ["React", "JavaScript"],
+      liveUrl: "https://fecardoso7.vercel.app/",
+      githubUrl: "https://github.com/fecardoso7/Portfolio",
+    },
+    {
+      id: 2,
       title: "Portfólio",
       titleEn: "Portfolio",
       description:
@@ -29,7 +42,7 @@ export const mockData = {
       githubUrl: "https://github.com/fecardoso7/Portfolio",
     },
     {
-      id: 2,
+      id: 3,
       title: "Sistema Solar",
       titleEn: "Solar System",
       description:
@@ -73,6 +86,7 @@ export const mockData = {
     { name: "JavaScript", category: "frontend" },
     { name: "TypeScript", category: "frontend" },
     { name: "React", category: "frontend" },
+    { name: "Next.js", category: "frontend" },
     { name: "Redux", category: "frontend" },
     { name: "Tailwind CSS", category: "frontend" },
 
