@@ -25,8 +25,8 @@ export const mockData = {
         "Institutional website developed for APS Administrativo, focused on performance, clarity, and user experience. Built with React and JavaScript, using reusable components and a modular architecture to ensure scalability, maintainability, and optimized loading. The project translates the company’s identity into a modern, responsive interface designed to enhance usability and conversion.",
       image: "/apsadm.webp",
       technologies: ["React", "JavaScript"],
-      liveUrl: "https://fecardoso7.vercel.app/",
-      githubUrl: "https://github.com/fecardoso7/Portfolio",
+      liveUrl: "https://www.apsadministrativo.com.br/",
+      githubUrl: "https://github.com/fecardoso7/APS",
     },
     {
       id: 2,
