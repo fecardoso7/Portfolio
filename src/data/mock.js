@@ -15,7 +15,7 @@ export const mockData = {
 
   // Listagem de Projetos (Destaques e Secundários)
   projects: [
-        {
+    {
       id: 1,
       title: "APS Administrativo",
       titleEn: "APS Administrative",
@@ -24,22 +24,22 @@ export const mockData = {
       descriptionEn:
         "Institutional website developed for APS Administrativo, focused on performance, clarity, and user experience. Built with React and JavaScript, using reusable components and a modular architecture to ensure scalability, maintainability, and optimized loading. The project translates the company’s identity into a modern, responsive interface designed to enhance usability and conversion.",
       image: "/apsadm.webp",
-      technologies: ["React", "JavaScript"],
+      technologies: ["JavaScript", "React", "Context API"],
       liveUrl: "https://www.apsadministrativo.com.br/",
       githubUrl: "https://github.com/fecardoso7/APS",
     },
     {
       id: 2,
-      title: "Portfólio",
-      titleEn: "Portfolio",
+      title: "Arquivo Gastronômico",
+      titleEn: "Gastronomic Archive",
       description:
-        "Aplicação web de alto desempenho desenvolvida com React e Tailwind CSS, focada em uma experiência de usuário fluida e responsiva. O projeto prioriza a otimização de performance e a semântica do código.",
+        "Aplicativo de receitas completo que permite buscar, filtrar por categorias e acompanhar o preparo de pratos e bebidas. Desenvolvido com React, utiliza uma API real para fornecer dados atualizados e possui layout totalmente responsivo.",
       descriptionEn:
-        "High-performance web application built with React and Tailwind CSS, engineered for a seamless and responsive user experience. This project emphasizes performance optimization and clean code architecture.",
-      image: "/portfolio.webp",
-      technologies: ["React", "Tailwind CSS", "JavaScript"],
-      liveUrl: "https://fecardoso7.vercel.app/",
-      githubUrl: "https://github.com/fecardoso7/Portfolio",
+        "A complete recipe app where users can search, filter by categories, and follow step-by-step instructions for meals and drinks. Built with React, it uses a real-time API and features a fully responsive layout.",
+      image: "/recipesapp.webp",
+      technologies: ["JavaScript", "React", "Context API"],
+      liveUrl: "https://project-recipes-app.vercel.app/", // Adicione o link de produção aqui
+      githubUrl: "https://github.com/fecardoso7/Project_Recipes_APP",
     },
     {
       id: 3,

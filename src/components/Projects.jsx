@@ -18,7 +18,7 @@ import {
   Loader2,
 } from "lucide-react";
 
-const PROJECTS_TO_SHOW = 1;
+const PROJECTS_TO_SHOW = 2;
 
 // Card individual para evitar re-render da lista completa
 const ProjectCard = memo(({ project, language, onOpen }) => {
