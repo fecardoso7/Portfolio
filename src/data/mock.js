@@ -38,7 +38,7 @@ export const mockData = {
         "A complete recipe app where users can search, filter by categories, and follow step-by-step instructions for meals and drinks. Built with React, it uses a real-time API and features a fully responsive layout.",
       image: "/recipesapp.webp",
       technologies: ["JavaScript", "React", "Context API"],
-      liveUrl: "https://project-recipes-app.vercel.app/", // Adicione o link de produção aqui
+      liveUrl: "https://project-recipes-app.vercel.app/",
       githubUrl: "https://github.com/fecardoso7/Project_Recipes_APP",
     },
     {
