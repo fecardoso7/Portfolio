@@ -1,240 +1,81 @@
-# 💼 Felipe Cardoso - Portfolio
+# 💼 Felipe Cardoso — Portfólio
 
 <div align="center">
-  
-  ![React](https://img.shields.io/badge/React-19.0.0-61DAFB?style=for-the-badge&logo=react&logoColor=white)
-  ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-  ![FastAPI](https://img.shields.io/badge/FastAPI-0.110.1-009688?style=for-the-badge&logo=fastapi&logoColor=white)
-  
-  **[🌐 View Live Demo](https://fecardoso7.vercel.app/) | [📧 Contact Me](mailto:felipe.cardoso@example.com)**
+  <img src="https://img.shields.io/badge/React-19.0.0-61DAFB?style=for-the-badge&logo=react&logoColor=white" />
+  <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+  <img src="https://img.shields.io/badge/Tailwind-3.4.17-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+  <img src="https://img.shields.io/badge/Framer_Motion-Latest-FF0055?style=for-the-badge&logo=framer&logoColor=white" />
 
+  <br />
+
+  **[🌐 View Live Demo](https://fecardoso7.vercel.app/) | [📧 Contact Me](mailto:felipecardoso1530@gmail.com) | [🔗 LinkedIn](https://www.linkedin.com/in/fecardosodev/)**
 </div>
-
----
-
-## 🚀 Início Rápido
-
-```bash
-# 1. Clonar o repositório
-git clone git@github.com:fecardoso7/Portfolio.git
-cd portfolio
-
-# 2. Instalar dependências
-yarn install
-
-#3. Build
-yarn run build
-
-# 3. Iniciar o projeto
-yarn start
-```
-
-**Pronto!** O site abrirá automaticamente em http://localhost:3000
 
 ---
 
 ## 🇧🇷 Português
 
 ### 📖 Sobre o Projeto
+Este portfólio nasceu do desejo de criar algo que fosse além de uma simples lista de links. Eu queria construir um espaço digital que pudesse mostrar minhas habilidades logo no primeiro clique. O foco foi desenvolver uma interface moderna, fluida e, acima de tudo, que proporcionasse uma navegação agradável em qualquer dispositivo.
 
-Portfólio pessoal desenvolvido para apresentar minhas habilidades como **Desenvolvedor Web Full Stack** com foco em Front-end. O site é totalmente responsivo, possui tema claro/escuro e suporte a múltiplos idiomas (Português e Inglês).
+### 🧠 O Desafio
+O maior desafio técnico foi encontrar o equilíbrio ideal entre um design visualmente rico e a performance da aplicação. Implementar efeitos de brilho, fundos dinâmicos e animações constantes sem sacrificar a velocidade de carregamento exigiu um estudo sobre a otimização de componentes no React 19 e o uso eficiente do Tailwind CSS. Outro ponto crucial foi garantir que a troca de idiomas e temas fosse instantânea, sem gerar interrupções visuais para o usuário.
 
 ### ✨ Funcionalidades
-
-- 🎨 **Design Moderno e Responsivo** - Interface elegante que se adapta a todos os dispositivos
-- 🌓 **Tema Claro/Escuro** - Alternância suave entre modos com persistência no localStorage
-- 🌍 **Multilíngue** - Suporte completo para Português e Inglês
-- 📧 **Formulário de Contato** - Integração com EmailJS
-- 💼 **Showcase de Projetos** - Galeria interativa de projetos com tecnologias utilizadas
-- 🎯 **Seção de Skills** - Visualização de tecnologias com ícones personalizados
-- 📱 **100% Responsivo** - Otimizado para desktop, tablet e mobile
-
-### 🛠️ Tecnologias Utilizadas
-
-#### Frontend
-- **React** 19.0.0 - Biblioteca JavaScript para interfaces
-- **React Router DOM** 7.5.1 - Navegação entre páginas
-- **Tailwind CSS** 3.4.17 - Framework CSS utility-first
-- **Shadcn/ui** - Componentes de UI modernos e acessíveis
-- **Lucide React** - Biblioteca de ícones
-- **EmailJS** - Serviço de envio de emails
-- **Axios** - Cliente HTTP para requisições
-
-#### Outras Ferramentas
-- **Docker** - Containerização (opcional)
-- **Git/GitHub** - Controle de versão
-
-### 📁 Estrutura do Projeto
-
-```
-portfolio/
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── ui/          # Componentes Shadcn/ui
-│   │   │   ├── Header.jsx
-│   │   │   ├── Hero.jsx
-│   │   │   ├── About.jsx
-│   │   │   ├── Skills.jsx
-│   │   │   ├── Projects.jsx
-│   │   │   ├── Contact.jsx
-│   │   │   └── Footer.jsx
-│   │   ├── contexts/
-│   │   │   ├── ThemeContext.jsx
-│   │   │   └── LanguageContext.jsx
-│   │   ├── data/
-│   │   │   └── mock.js      # Dados dos projetos e skills
-│   │   ├── translations/
-│   │   │   └── translations.js
-│   │   ├── App.js
-│   │   └── index.css
-│   ├── package.json
-│   └── tailwind.config.js
-│
-│
-└── README.md
-```
-
----
-
-</details>
-
-#### 4️⃣ Configurar EmailJS (Opcional)
-
-1. Acesse [EmailJS](https://www.emailjs.com/)
-2. Crie uma conta gratuita
-3. Configure um serviço de email
-4. Crie um template com as variáveis: `user_name`, `user_email`, `message`
-5. Substitua as credenciais em `frontend/src/components/Contact.jsx`:
-
-```javascript
-const serviceId = 'SEU_SERVICE_ID';
-const templateId = 'SEU_TEMPLATE_ID';
-const publicKey = 'SUA_PUBLIC_KEY';
-```
-
-### 📧 Contato
-
-- **LinkedIn**: [Felipe Cardoso](https://www.linkedin.com/in/fecardosodev/)
-- **GitHub**: [@fecardoso7](https://github.com/fecardoso7)
-- **Email**: felipe.cardoso@example.com
+- **Navegação Inteligente:** Transições suaves entre seções que mantêm o contexto do usuário.
+- **Experiência Bilíngue:** Suporte completo para Português e Inglês, salvando sua preferência para visitas futuras.
+- **Foco em UI:** Efeitos visuais "Premium" com baixa opacidade e gradientes sutis que trazem sofisticação.
+- **Dark & Light Mode:** Interface que se adapta ao sistema do usuário ou à sua preferência manual.
+- **Contato Facilitado:** Formulário integrado para envio de e-mails diretamente pela plataforma.
 
 ---
 
 ## 🇺🇸 English
 
 ### 📖 About The Project
+This portfolio was born from a desire to create something more than just a list of links. I wanted to build a digital space that could show my skills from the very first click. The main goal was to develop a modern, fluid interface that provides a pleasant browsing experience on any device.
 
-Personal portfolio developed to showcase my skills as a **Full Stack Web Developer** with a focus on Front-end. The website is fully responsive, features light/dark theme and supports multiple languages (Portuguese and English).
+### 🧠 The Challenge
+The biggest technical challenge was finding the perfect balance between a visually rich design and application performance. Implementing glow effects, dynamic backgrounds, and constant animations without sacrificing loading speed required a deep dive into React 19 component optimization and the efficient use of Tailwind CSS. Another crucial point was ensuring that language and theme switching was instantaneous and did not create visual "glitches" for the user.
 
 ### ✨ Features
-
-- 🎨 **Modern & Responsive Design** - Elegant interface that adapts to all devices
-- 🌓 **Light/Dark Theme** - Smooth theme switching with localStorage persistence
-- 🌍 **Multilingual** - Full support for Portuguese and English
-- 📧 **Contact Form** - EmailJS integration
-- 💼 **Project Showcase** - Interactive project gallery with used technologies
-- 🎯 **Skills Section** - Technology visualization with custom icons
-- 📱 **100% Responsive** - Optimized for desktop, tablet and mobile
-
-### 🛠️ Technologies Used
-
-#### Frontend
-- **React** 19.0.0 - JavaScript library for user interfaces
-- **React Router DOM** 7.5.1 - Page navigation
-- **Tailwind CSS** 3.4.17 - Utility-first CSS framework
-- **Shadcn/ui** - Modern and accessible UI components
-- **Lucide React** - Icon library
-- **EmailJS** - Email sending service
-- **Axios** - HTTP client for requests
-
-#### Other Tools
-- **Docker** - Containerization (optional)
-- **Git/GitHub** - Version control
-
-### 📁 Project Structure
-
-```
-portfolio/
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── ui/          # Shadcn/ui components
-│   │   │   ├── Header.jsx
-│   │   │   ├── Hero.jsx
-│   │   │   ├── About.jsx
-│   │   │   ├── Skills.jsx
-│   │   │   ├── Projects.jsx
-│   │   │   ├── Contact.jsx
-│   │   │   └── Footer.jsx
-│   │   ├── contexts/
-│   │   │   ├── ThemeContext.jsx
-│   │   │   └── LanguageContext.jsx
-│   │   ├── data/
-│   │   │   └── mock.js      # Projects and skills data
-│   │   ├── translations/
-│   │   │   └── translations.js
-│   │   ├── App.js
-│   │   └── index.css
-│   ├── package.json
-│   └── tailwind.config.js
-│
-└── README.md
-```
-
-### 🚀 How to Run Locally
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/fecardoso7/portfolio.git
-cd portfolio
-
-# 2. Install dependencies
-yarn install
-
-#3. Run Build
-yarn run build
-
-# 3. Start the project
-yarn start
-```
-
-The site will automatically open at **http://localhost:3000**
+- **Smart Navigation:** Smooth transitions between sections that maintain user context.
+- **Bilingual Experience:** Full support for Portuguese and English, saving your preference for future visits.
+- **UI Focused:** "Premium" visual effects with low opacity and subtle gradients for a sophisticated look.
+- **Dark & Light Mode:** Interface adapts to the user's system or manual preference.
+- **Easy Contact:** Integrated form to send emails directly through the platform.
 
 ---
 
-</details>
+## 🛠️ Tech Stack
 
-#### 4️⃣ Setup EmailJS (Optional)
+| Frontend | Tools & Services |
+| :--- | :--- |
+| **React 19** / React Router 7 | **Git / GitHub** (Version Control) |
+| **Tailwind CSS** (Utility-first) | **Vercel** (Deployment & CI/CD) |
+| **Shadcn/ui** (Components) | **EmailJS** (Email Service) |
+| **Framer Motion** (Animations) | **Lucide React** (Iconography) |
 
-1. Go to [EmailJS](https://www.emailjs.com/)
-2. Create a free account
-3. Setup an email service
-4. Create a template with variables: `user_name`, `user_email`, `message`
-5. Replace credentials in `frontend/src/components/Contact.jsx`:
+---
 
-```javascript
-const serviceId = 'YOUR_SERVICE_ID';
-const templateId = 'YOUR_TEMPLATE_ID';
-const publicKey = 'YOUR_PUBLIC_KEY';
+## 🚀 Como Executar / How to Run
+
+```bash
+# 1. Clonar o repositório / Clone repository
+git clone https://github.com/fecardoso7/Portfolio
+cd portfolio
+
+# 2. Instalar dependências / Install dependencies
+yarn install
+
+# 3. Iniciar o projeto / Start project
+yarn start
+
 ```
-
-### 🎨 Customization
-
-### 📧 Contact
-
-- **LinkedIn**: [Felipe Cardoso](https://www.linkedin.com/in/fecardosodev/)
-- **GitHub**: [@fecardoso7](https://github.com/fecardoso7)
-- **Email**: felipe.cardoso@example.com
 
 ---
 
 <div align="center">
-  
-  **Made by Felipe Cardoso**
-  
-  ⭐ Star this repository if you like it!
-
+<br />
+<sub>Developed with ☕ by Felipe Cardoso • 2026</sub>
 </div>
